@@ -1,5 +1,7 @@
 package view;
 
+import listeners.ExitAction;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +12,8 @@ import java.awt.event.ActionListener;
 public class MenuBar {
 
     private JMenuBar menuBar;
+    private JMenuItem exit;
+    private ImageIcon exitIcon;
 
     public MenuBar(){
 
@@ -21,7 +25,9 @@ public class MenuBar {
 
         JMenu menu = new JMenu("FIle");
         menuBar.add(menu);
-        JMenuItem exit = new JMenuItem(new ExitAction("Exit"));
+        exitIcon = new ImageIcon(MenuBar.class.getResource("../icons/exit.png"));
+        exit = new JMenuItem(new ExitAction("Exit", exitIcon));
+        menu.add(new JSeparator());
         menu.add(exit);
 
     }
@@ -30,15 +36,4 @@ public class MenuBar {
         return menuBar;
     }
 
-    private class ExitAction extends AbstractAction {
-
-        private ExitAction(String name) {
-            super(name);
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            System.exit(0);
-        }
-    }
 }
